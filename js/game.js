@@ -1,0 +1,44 @@
+class Game {
+
+    constructor(){}
+
+    getState(){
+
+        var gameStateRef = database.ref('gameState');
+        gameStateRef.on("value", (data) =>{
+
+            gameState = data.val();
+
+        });
+
+    }
+
+    update(state){
+
+        database.ref('/').update({
+
+            gameState : state
+
+        });
+
+    }
+
+    async setRole(){
+
+        if(gameState === 2){
+
+            player = new Player();
+            var playerCountRef = await database.ref('playerCount').once("value");
+            
+            var index = 0;
+
+                playerCount = playerCountRef.val();
+
+                player.getCount();
+
+
+        }
+
+    }
+
+}
